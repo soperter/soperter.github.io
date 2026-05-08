@@ -4,107 +4,404 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeJoy Games | 轻乐游工作室</title>
+    <!-- 谷歌验证 meta 标签（如果有的话，保留在这里，不要删除） -->
+    <!-- <meta name="google-site-verification" content="你的验证码"> -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", sans-serif;
-            background: #0a0a0a url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><path fill="%231a1a2e" d="M1 3h1v1H1V3zm2-2h1v1H3V1z"/></svg>');
+            font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
+            background: #080810;
             color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        .glow-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, #00d4ff, #ff00ff, #ffdd00);
+
+        /* 粒子背景容器 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* 导航栏 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(10, 10, 25, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(100, 100, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00eeff, #ff00cc);
             -webkit-background-clip: text;
-            background-clip: text;
             color: transparent;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
-            margin-bottom: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            margin-left: 24px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00eeff;
+        }
+
+        .social-icons a {
+            margin-left: 16px;
+            color: #ccc;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #00eeff;
+        }
+
+        /* 英雄区 */
+        .hero {
+            padding: 160px 20px 100px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            background: linear-gradient(90deg, #00eeff, #ff00cc, #ffaa00);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
             animation: glow 3s ease-in-out infinite alternate;
         }
+
         @keyframes glow {
-            from { filter: brightness(1); }
-            to { filter: brightness(1.3); }
+            from { filter: drop-shadow(0 0 5px #00eeff); }
+            to { filter: drop-shadow(0 0 15px #ff00cc); }
         }
-        .subtitle {
-            font-size: 1.3rem;
-            color: #a0a0c0;
-            margin-bottom: 3rem;
-            text-align: center;
-            max-width: 600px;
-            line-height: 1.6;
+
+        .hero p {
+            font-size: 18px;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
-        .btn-group {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .btn {
-            padding: 1rem 2.5rem;
-            border: 2px solid transparent;
+
+        .hero .btn {
+            padding: 12px 28px;
+            background: linear-gradient(90deg, #00eeff, #ff00cc);
+            border: none;
             border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            color: #000;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             text-decoration: none;
-            color: #fff;
+            display: inline-block;
+            margin: 0 10px;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, #00d4ff, #0099ff);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-        }
-        .btn-primary:hover {
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.7);
+
+        .hero .btn:hover {
             transform: translateY(-3px);
+            box-shadow: 0 0 20px #ff00cc66;
         }
-        .btn-secondary {
+
+        .hero .btn-secondary {
             background: transparent;
-            border-color: #ff00ff;
-            color: #ff00ff;
+            border: 2px solid #ff00cc;
+            color: #ff00cc;
         }
-        .btn-secondary:hover {
-            background: rgba(255, 0, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+
+        /* 内容区块 */
+        .section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
-        .footer {
-            margin-top: 4rem;
-            font-size: 0.9rem;
-            color: #666;
+
+        .section h2 {
+            font-size: 30px;
+            margin-bottom: 30px;
             text-align: center;
+            color: #fff;
+            background: linear-gradient(90deg, #00eeff, #ff00cc);
+            -webkit-background-clip: text;
+            color: transparent;
         }
-        /* 响应式适配手机 */
+
+        /* 游戏卡片 */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: rgba(20, 20, 40, 0.6);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(100, 100, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(100, 100, 255, 0.15);
+        }
+
+        .game-card h3 {
+            color: #00eeff;
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            color: #999;
+        }
+
+        /* 开发日志 */
+        .devlog-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .devlog-item {
+            background: rgba(20, 20, 40, 0.6);
+            border-left: 3px solid #00eeff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .devlog-item h4 {
+            color: #00eeff;
+            margin-bottom: 8px;
+        }
+
+        .devlog-item .date {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* 加入我们 */
+        .join-us {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .join-card {
+            background: rgba(20, 20, 40, 0.6);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(100, 100, 255, 0.1);
+        }
+
+        .join-card h3 {
+            color: #00eeff;
+            margin-bottom: 20px;
+        }
+
+        .join-card p {
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .join-card .btn {
+            padding: 10px 24px;
+            background: #00eeff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid rgba(100, 100, 255, 0.1);
+            margin-top: 80px;
+            position: relative;
+            z-index: 1;
+        }
+
         @media (max-width: 768px) {
-            .glow-title { font-size: 2.2rem; }
-            .subtitle { font-size: 1.1rem; }
-            .btn { padding: 0.8rem 1.8rem; font-size: 1rem; }
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links a {
+                margin-left: 12px;
+                font-size: 14px;
+            }
+
+            .join-us {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
+    <!-- 粒子库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <h1 class="glow-title">LeJoy Games | 轻乐游工作室 </h1>
-    <p class="subtitle">
-        专注于创造充满乐趣与惊喜的独立游戏<br>
-        用代码编织幻想，用交互传递快乐
-    </p>
-    <div class="btn-group">
-        <a href="#" class="btn btn-primary">即将上线</a>
-        <a href="#" class="btn btn-secondary">关注我们</a>
-    </div>
-    <div class="footer">
-        © 2026 LeJoy Games | Powered by GitHub Pages
-    </div>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+
+    <!-- 导航 -->
+    <nav>
+        <div class="logo">LeJoy Games</div>
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#games">游戏</a>
+            <a href="#devlog">开发日志</a>
+            <a href="#about">关于我们</a>
+            <a href="#join">加入我们</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fa fa-steam"></i></a>
+            <a href="#" target="_blank"><i class="fa fa-discord"></i></a>
+            <a href="#" target="_blank"><i class="fa fa-qq"></i></a>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <section class="hero" id="home">
+        <h1>LeJoy Games | 轻乐游工作室</h1>
+        <p>专注于创造充满情感与惊喜的独立游戏体验<br>用代码编织幻想世界，用交互传递纯粹快乐</p>
+        <a href="#games" class="btn">查看我们的游戏</a>
+        <a href="#join" class="btn btn-secondary">加入社区</a>
+    </section>
+
+    <!-- 游戏展示 -->
+    <section class="section" id="games">
+        <h2>我们的游戏</h2>
+        <div class="game-grid">
+            <div class="game-card">
+                <h3>未知幻想</h3>
+                <p>类型：叙事解谜 / 2D 独立游戏<br>状态：开发中<br>在梦境与现实之间，编织属于你的世界。</p>
+            </div>
+            <div class="game-card">
+                <h3>代码行者</h3>
+                <p>类型：程序冒险 / 逻辑闯关<br>状态：规划中<br>用代码解决谜题，探索数字世界。</p>
+            </div>
+            <div class="game-card">
+                <h3>轻乐小游戏合集</h3>
+                <p>类型：休闲治愈<br>状态：规划中<br>轻松、有趣、随时可玩的快乐体验。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 开发日志 -->
+    <section class="section" id="devlog">
+        <h2>开发日志</h2>
+        <div class="devlog-list">
+            <div class="devlog-item">
+                <h4>关卡编辑器迭代完成</h4>
+                <div class="date">2026.05.08</div>
+                <p>优化了拖拽逻辑，支持自定义组件，现在可以更快搭建游戏场景。</p>
+            </div>
+            <div class="devlog-item">
+                <h4>角色动画系统优化</h4>
+                <div class="date">2026.05.01</div>
+                <p>新增 12 组待机/移动动画，提升角色表现力。</p>
+            </div>
+            <div class="devlog-item">
+                <h4>音效设计方案定稿</h4>
+                <div class="date">2026.04.25</div>
+                <p>确定了整体风格，将在下周开始录制实机音效。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="section" id="about">
+        <h2>关于 LeJoy Games</h2>
+        <div style="max-width:700px;margin:0 auto;text-align:center;color:#aaa;">
+            <p>我们是一群热爱游戏、热爱创造的独立开发者。</p>
+            <br>
+            <p>LeJoy Games 轻乐游工作室，致力于制作有趣、有温度、有创意的独立游戏。</p>
+            <br>
+            <p>用技术实现梦想，用游戏传递快乐。</p>
+        </div>
+    </section>
+
+    <!-- 加入我们 -->
+    <section class="section" id="join">
+        <h2>加入我们</h2>
+        <div class="join-us">
+            <div class="join-card">
+                <h3>玩家社区</h3>
+                <p>参与测试、提出建议，和我们一起打磨游戏。</p>
+                <a href="#" class="btn">加入 QQ 群</a>
+            </div>
+            <div class="join-card">
+                <h3>招贤纳士</h3>
+                <p>开放岗位：Unity 程序 / 2D 美术 / 游戏策划 / 音效设计</p>
+                <a href="mailto:your-email@example.com" class="btn">投递简历</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 LeJoy Games 轻乐游工作室 | 保留所有权利</p>
+        <br>
+        <p>官方网站：soperter.github.io</p>
+    </footer>
+
+    <!-- 粒子初始化 -->
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00eeff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00eeff", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
