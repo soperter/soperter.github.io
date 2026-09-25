@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QLY Games | 轻乐游工作室</title>
 
-    <!-- ====== 新增 Facebook 验证（已添加） ====== -->
+    <!-- ====== Facebook 验证 ====== -->
     <meta name="facebook-domain-verification" content="delt99eh7a3i62izvz0mzw6n9rv25a" />
-    
-    <!-- 谷歌验证 meta 标签（如果有的话，保留在这里） -->
+
+    <!-- 谷歌验证 meta 标签（如有需要可取消注释并填入验证码） -->
     <!-- <meta name="google-site-verification" content="你的验证码"> -->
+
     <style>
         * {
             margin: 0;
@@ -40,7 +41,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 30px; /* 缩小导航栏高度 */
+            padding: 12px 30px;
             background: rgba(10, 10, 25, 0.8);
             backdrop-filter: blur(10px);
             position: fixed;
@@ -81,16 +82,16 @@
             color: #00eeff;
         }
 
-        /* 英雄区（收紧高度） */
+        /* 英雄区 */
         .hero {
-            padding: 100px 20px 60px; /* 减少上下内边距 */
+            padding: 100px 20px 60px;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
         .hero h1 {
-            font-size: 42px; /* 稍微缩小标题 */
+            font-size: 42px;
             background: linear-gradient(90deg, #00eeff, #ff00cc, #ffaa00);
             -webkit-background-clip: text;
             color: transparent;
@@ -104,14 +105,14 @@
         }
 
         .hero p {
-            font-size: 16px; /* 缩小文字 */
+            font-size: 16px;
             color: #aaa;
-            max-width: 600px; /* 收窄文字宽度 */
+            max-width: 600px;
             margin: 0 auto 25px;
         }
 
         .hero .btn {
-            padding: 10px 24px; /* 缩小按钮 */
+            padding: 10px 24px;
             background: linear-gradient(90deg, #00eeff, #ff00cc);
             border: none;
             border-radius: 6px;
@@ -136,36 +137,50 @@
             color: #ff00cc;
         }
 
-        /* 内容区块（缩小间距） */
+        /* 网站更新提示条 */
+        .update-notice {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 12px 20px;
+            background: rgba(0, 238, 255, 0.08);
+            border: 1px solid rgba(0, 238, 255, 0.3);
+            border-radius: 6px;
+            color: #00eeff;
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 内容区块 */
         .section {
-            max-width: 1000px; /* 收窄整体宽度 */
-            margin: 40px auto; /* 减少上下外边距 */
+            max-width: 1000px;
+            margin: 40px auto;
             padding: 0 20px;
             position: relative;
             z-index: 1;
         }
 
         .section h2 {
-            font-size: 26px; /* 缩小标题 */
-            margin-bottom: 20px; /* 减少标题下方间距 */
+            font-size: 26px;
+            margin-bottom: 20px;
             text-align: center;
-            color: #fff;
             background: linear-gradient(90deg, #00eeff, #ff00cc);
             -webkit-background-clip: text;
             color: transparent;
         }
 
-        /* 游戏卡片（收紧内边距和间距） */
+        /* 游戏卡片 */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px; /* 缩小卡片间距 */
+            gap: 20px;
         }
 
         .game-card {
             background: rgba(20, 20, 40, 0.6);
             border-radius: 8px;
-            padding: 16px; /* 缩小内边距 */
+            padding: 16px;
             border: 1px solid rgba(100, 100, 255, 0.1);
             transition: 0.3s;
         }
@@ -186,17 +201,17 @@
             font-size: 13px;
         }
 
-        /* 开发日志（收紧间距） */
+        /* 开发日志 */
         .devlog-list {
-            max-width: 700px; /* 收窄宽度 */
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .devlog-item {
             background: rgba(20, 20, 40, 0.6);
             border-left: 3px solid #00eeff;
-            padding: 16px; /* 缩小内边距 */
-            margin-bottom: 15px; /* 减少条目间距 */
+            padding: 16px;
+            margin-bottom: 15px;
             border-radius: 6px;
         }
 
@@ -216,19 +231,19 @@
             font-size: 13px;
         }
 
-        /* 加入我们（收紧间距） */
+        /* 加入我们 */
         .join-us {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px; /* 缩小卡片间距 */
-            max-width: 800px; /* 收窄宽度 */
+            gap: 20px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .join-card {
             background: rgba(20, 20, 40, 0.6);
             border-radius: 8px;
-            padding: 24px; /* 缩小内边距 */
+            padding: 24px;
             text-align: center;
             border: 1px solid rgba(100, 100, 255, 0.1);
         }
@@ -246,7 +261,7 @@
         }
 
         .join-card .btn {
-            padding: 8px 20px; /* 缩小按钮 */
+            padding: 8px 20px;
             background: #00eeff;
             color: #000;
             border: none;
@@ -257,13 +272,13 @@
             font-size: 13px;
         }
 
-        /* 页脚（收紧间距） */
+        /* 页脚 */
         footer {
             text-align: center;
-            padding: 25px 20px; /* 缩小上下内边距 */
+            padding: 25px 20px;
             color: #666;
             border-top: 1px solid rgba(100, 100, 255, 0.1);
-            margin-top: 60px; /* 减少上边距 */
+            margin-top: 60px;
             position: relative;
             z-index: 1;
             font-size: 13px;
@@ -323,6 +338,11 @@
         <a href="#join" class="btn btn-secondary">加入社区</a>
     </section>
 
+    <!-- 网站更新提示 -->
+    <div class="update-notice">
+        🚧 网站正在持续更新中，更多游戏内容与开发进展即将上线，敬请期待！
+    </div>
+
     <!-- 游戏展示 -->
     <section class="section" id="games">
         <h2>我们的游戏</h2>
@@ -347,19 +367,19 @@
         <h2>开发日志</h2>
         <div class="devlog-list">
             <div class="devlog-item">
-                <h4>关卡编辑器迭代完成</h4>
-                <div class="date">2026.05.08</div>
-                <p>优化了拖拽逻辑，支持自定义组件，现在可以更快搭建游戏场景。</p>
+                <h4>核心玩法框架搭建完成</h4>
+                <div class="date">2026.09.20</div>
+                <p>完成了主线关卡的基础逻辑，正在打磨交互手感与关卡节奏。</p>
             </div>
             <div class="devlog-item">
-                <h4>角色动画系统优化</h4>
-                <div class="date">2026.05.01</div>
-                <p>新增 12 组待机/移动动画，提升角色表现力。</p>
+                <h4>美术风格方向确定</h4>
+                <div class="date">2026.09.12</div>
+                <p>确定了整体视觉风格与配色方案，开始制作首批场景与角色资源。</p>
             </div>
             <div class="devlog-item">
-                <h4>音效设计方案定稿</h4>
-                <div class="date">2026.04.25</div>
-                <p>确定了整体风格，将在下周开始录制实机音效。</p>
+                <h4>开发工具链优化</h4>
+                <div class="date">2026.09.05</div>
+                <p>重构了资源导入流程，提升了开发效率，为后续内容迭代做准备。</p>
             </div>
         </div>
     </section>
@@ -404,7 +424,7 @@
     <script>
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, // 减少粒子数量，避免太乱
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#00eeff" },
                 "shape": { "type": "circle" },
                 "opacity": { "value": 0.4, "random": true },
