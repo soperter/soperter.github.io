@@ -101,7 +101,7 @@ conversantmedia.com,100886,RESELLER,03113cd04947736d
 copper6.com, 766114, RESELLER
 criteo.com,b-062019,RESELLER,9fac4a4a87c2a44f
 dauup.com, 34109, RESELLER
-dauup.com, 34222, RESELLER, 4daba13e2b0dfd9
+dauup.com, 34222, RESELLER, 4daba13e2b0dfd92
 display.io, 236374, RESELLER
 display.io,222480,RESELLER
 display.io,2499,RESELLER
@@ -525,7 +525,7 @@ unity.com, 154978440, DIRECT, 96cabb5fbdde37a7
 unrulymedia.com,689559416,RESELLER
 ushareit.com,LCc6b8b1c8aca38e6f,RESELLER
 verve.com, 1008379, RESELLER, 0c8f5958fc2d6270
-verve.com,1007302,RESELLER,0c8f5958fc2d6282
+verve.com,1007302,RESELLER,0c8f5958fc2d6270
 verve.com,15503,RESELLER,0c8f5958fc2d6270
 vidazoo.com, 6a3384a48eca8f6ddad62520, RESELLER, b6ada874b4d7d0b2
 video.unrulymedia.com, 144138083, RESELLER
