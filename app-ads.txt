@@ -1,2 +1,19 @@
+# --- Google AdMob ---
+# 域名, 发布商ID (pub-开头), 账户关系(DIRECT), 认证机构ID (TAG ID)
 google.com, pub-7998995833775673, DIRECT, f08c47fec0942fa0
+
+# --- Vungle (旧版) ---
+# 域名, 应用ID, DIRECT, 认证机构ID
 vungle.com, 6ac8a7ec020a978505d0428d, DIRECT, c107d686becd2d77
+
+# --- Unity Ads ---
+# 域名, 游戏ID/项目ID (800391890), DIRECT, 认证机构ID
+unity.com, 800391890, DIRECT, c107d686becd2d77
+
+# --- Pangle (穿山甲海外) ---
+# 域名, 发布商ID (983711865), DIRECT, 认证机构ID
+pangleglobal.com, 983711865, DIRECT, c107d686becd2d77
+
+# --- Liftoff Monetize (新版 Vungle) ---
+# 域名, 应用ID (6ac8ab42...), DIRECT, 认证机构ID
+liftoff.io, 6ac8ab42a18be6d1e4ca50e5, DIRECT, c107d686becd2d77
