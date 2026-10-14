@@ -1,444 +1,475 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QLY Games | 轻乐游工作室</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QLY Games | 轻乐游工作室</title>
+  <style>
+    /* ====== 设计令牌 ====== */
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #24232c;
+      --color-text-light: #6b6a75;
+      --color-accent: #6239f3;
+      --color-accent-hover: #f9b401;
+      --color-brand-purple: #7A3BD0;
+      --color-brand-teal: #5FC0C6;
+      --color-border: #e8e7ed;
+      --color-card-bg: #fafafa;
+      --font-body: 'PTSans', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+      --font-display: 'LeagueSpartan', 'PTSans', 'Microsoft YaHei', sans-serif;
+      --max-width: 1200px;
+      --section-padding: 100px 0;
+    }
 
-    <!-- ====== Facebook 验证 ====== -->
-    <meta name="facebook-domain-verification" content="delt99eh7a3i62izvz0mzw6n9rv25a" />
+    /* ====== 字体引入 ====== */
+    @font-face {
+      font-family: 'PTSans';
+      src: url('fonts/PTSans-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PTSans';
+      src: url('fonts/PTSans-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'LeagueSpartan';
+      src: url('fonts/LeagueSpartan-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-display: swap;
+    }
 
-    <!-- 谷歌验证 meta 标签（如有需要可取消注释并填入验证码） -->
-    <!-- <meta name="google-site-verification" content="你的验证码"> -->
+    /* ====== 基础重置 ====== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text);
+      background: var(--color-bg);
+      overflow-x: hidden;
+    }
+    a { color: var(--color-accent); text-decoration: none; transition: color .3s ease; }
+    a:hover { color: var(--color-accent-hover); }
+    img { max-width: 100%; display: block; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* ====== 导航栏 ====== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      padding: 20px 0;
+      transition: background .4s ease, padding .4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px 0;
+    }
+    .nav .container {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: 0.05em;
+    }
+    .nav.scrolled .nav-logo { color: #fff; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      position: relative;
+      font-size: 15px; color: var(--color-text);
+      overflow: hidden; display: block;
+    }
+    .nav.scrolled .nav-links a { color: #fff; }
+    .nav-links a::before,
+    .nav-links a::after {
+      content: attr(data-hover);
+      position: absolute; left: 0; right: 0; text-align: center;
+      transition: transform .4s ease, opacity .4s ease;
+    }
+    .nav-links a::before {
+      color: var(--color-accent);
+      transform: translateY(-100%); opacity: 0;
+    }
+    .nav-links a::after {
+      color: inherit;
+      transform: translateY(0); opacity: 1;
+    }
+    .nav-links a:hover::before { transform: translateY(0); opacity: 1; }
+    .nav-links a:hover::after { transform: translateY(100%); opacity: 0; }
 
-        body {
-            font-family: 'Segoe UI', Roboto, 'Microsoft YaHei', sans-serif;
-            background: #080810;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* ====== Hero 区 ====== */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: linear-gradient(180deg, #f8f7fc 0%, #ffffff 100%);
+    }
+    .hero-content { max-width: 800px; }
+    .hero-eyebrow {
+      font-size: 14px; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-brand-purple);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 80px);
+      line-height: 1.05;
+      color: var(--color-text);
+      margin-bottom: 24px;
+    }
+    .hero-title span { color: var(--color-accent); }
+    .hero-desc {
+      font-size: 18px; line-height: 1.7;
+      color: var(--color-text-light);
+      max-width: 600px; margin: 0 auto 40px;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 16px 40px;
+      background: var(--color-accent);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: background .3s ease, color .3s ease, transform .3s ease;
+    }
+    .hero-cta:hover {
+      background: var(--color-accent-hover);
+      color: #24232c;
+      transform: translateY(-2px);
+    }
 
-        /* 粒子背景容器 */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
+    /* ====== 通用区块 ====== */
+    .section { padding: var(--section-padding); }
+    .section-header { margin-bottom: 60px; }
+    .section-label {
+      font-size: 13px; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-brand-teal);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.1;
+      color: var(--color-text);
+    }
+    .section-title span { color: var(--color-accent); }
 
-        /* 导航栏 */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 30px;
-            background: rgba(10, 10, 25, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 999;
-            border-bottom: 1px solid rgba(100, 100, 255, 0.2);
-        }
+    /* ====== 游戏卡片 ====== */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    .game-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      padding: 40px 32px;
+      transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+    }
+    .game-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(98, 57, 243, 0.08);
+      border-color: var(--color-accent);
+    }
+    .game-card-status {
+      display: inline-block;
+      font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-light);
+      margin-bottom: 20px;
+    }
+    .game-card-status.dev { border-color: var(--color-brand-teal); color: var(--color-brand-teal); }
+    .game-card-status.planning { border-color: var(--color-brand-purple); color: var(--color-brand-purple); }
+    .game-card-title {
+      font-family: var(--font-display);
+      font-size: 28px; margin-bottom: 8px;
+    }
+    .game-card-type {
+      font-size: 14px; color: var(--color-text-light);
+      margin-bottom: 16px;
+    }
+    .game-card-desc { font-size: 15px; color: var(--color-text-light); line-height: 1.7; }
 
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #00eeff, #ff00cc);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+    /* ====== 开发日志 ====== */
+    .log-list { list-style: none; }
+    .log-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--color-border);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .log-item.visible { opacity: 1; transform: translateY(0); }
+    .log-date {
+      font-family: var(--font-display);
+      font-size: 16px; color: var(--color-accent);
+      letter-spacing: 0.05em;
+    }
+    .log-title { font-weight: 700; margin-bottom: 6px; }
+    .log-desc { font-size: 15px; color: var(--color-text-light); }
 
-        .nav-links a {
-            color: #ccc;
-            margin-left: 20px;
-            text-decoration: none;
-            transition: 0.3s;
-            font-size: 14px;
-        }
+    /* ====== 关于 / 加入 ====== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-text p { margin-bottom: 16px; color: var(--color-text-light); line-height: 1.8; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 48px; color: var(--color-accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: 14px; color: var(--color-text-light); margin-top: 8px; }
 
-        .nav-links a:hover {
-            color: #00eeff;
-        }
+    .join-actions {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 32px;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      font-weight: 700;
+      transition: all .3s ease;
+    }
+    .btn-outline:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
 
-        .social-icons a {
-            margin-left: 14px;
-            color: #ccc;
-            font-size: 18px;
-            transition: 0.3s;
-        }
+    /* ====== 页脚 ====== */
+    .footer {
+      padding: 60px 0 40px;
+      background: #f8f7fc;
+      border-top: 1px solid var(--color-border);
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .footer-copy { font-size: 14px; color: var(--color-text-light); }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 14px; color: var(--color-text-light); }
+    .footer-links a:hover { color: var(--color-accent); }
 
-        .social-icons a:hover {
-            color: #00eeff;
-        }
-
-        /* 英雄区 */
-        .hero {
-            padding: 100px 20px 60px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            background: linear-gradient(90deg, #00eeff, #ff00cc, #ffaa00);
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 15px;
-            animation: glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px #00eeff); }
-            to { filter: drop-shadow(0 0 15px #ff00cc); }
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: #aaa;
-            max-width: 600px;
-            margin: 0 auto 25px;
-        }
-
-        .hero .btn {
-            padding: 10px 24px;
-            background: linear-gradient(90deg, #00eeff, #ff00cc);
-            border: none;
-            border-radius: 6px;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin: 0 8px;
-            font-size: 14px;
-        }
-
-        .hero .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px #ff00cc66;
-        }
-
-        .hero .btn-secondary {
-            background: transparent;
-            border: 2px solid #ff00cc;
-            color: #ff00cc;
-        }
-
-        /* 网站更新提示条 */
-        .update-notice {
-            max-width: 800px;
-            margin: 0 auto 30px;
-            padding: 12px 20px;
-            background: rgba(0, 238, 255, 0.08);
-            border: 1px solid rgba(0, 238, 255, 0.3);
-            border-radius: 6px;
-            color: #00eeff;
-            font-size: 14px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* 内容区块 */
-        .section {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .section h2 {
-            font-size: 26px;
-            margin-bottom: 20px;
-            text-align: center;
-            background: linear-gradient(90deg, #00eeff, #ff00cc);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        /* 游戏卡片 */
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .game-card {
-            background: rgba(20, 20, 40, 0.6);
-            border-radius: 8px;
-            padding: 16px;
-            border: 1px solid rgba(100, 100, 255, 0.1);
-            transition: 0.3s;
-        }
-
-        .game-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(100, 100, 255, 0.15);
-        }
-
-        .game-card h3 {
-            color: #00eeff;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .game-card p {
-            color: #999;
-            font-size: 13px;
-        }
-
-        /* 开发日志 */
-        .devlog-list {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .devlog-item {
-            background: rgba(20, 20, 40, 0.6);
-            border-left: 3px solid #00eeff;
-            padding: 16px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-        }
-
-        .devlog-item h4 {
-            color: #00eeff;
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-
-        .devlog-item .date {
-            color: #666;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .devlog-item p {
-            font-size: 13px;
-        }
-
-        /* 加入我们 */
-        .join-us {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .join-card {
-            background: rgba(20, 20, 40, 0.6);
-            border-radius: 8px;
-            padding: 24px;
-            text-align: center;
-            border: 1px solid rgba(100, 100, 255, 0.1);
-        }
-
-        .join-card h3 {
-            color: #00eeff;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .join-card p {
-            color: #999;
-            margin-bottom: 15px;
-            font-size: 13px;
-        }
-
-        .join-card .btn {
-            padding: 8px 20px;
-            background: #00eeff;
-            color: #000;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        /* 页脚 */
-        footer {
-            text-align: center;
-            padding: 25px 20px;
-            color: #666;
-            border-top: 1px solid rgba(100, 100, 255, 0.1);
-            margin-top: 60px;
-            position: relative;
-            z-index: 1;
-            font-size: 13px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            nav {
-                padding: 12px 20px;
-            }
-
-            .nav-links a {
-                margin-left: 10px;
-                font-size: 12px;
-            }
-
-            .join-us {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-    <!-- 粒子库 -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- 图标库 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    /* ====== 响应式 ====== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: 36px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .log-item { grid-template-columns: 1fr; gap: 8px; }
+      .about-stats { gap: 24px; }
+      .stat-number { font-size: 36px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
-    <!-- 粒子背景 -->
-    <div id="particles-js"></div>
 
-    <!-- 导航 -->
-    <nav>
-        <div class="logo">QLY Games</div>
-        <div class="nav-links">
-            <a href="#home">首页</a>
-            <a href="#games">游戏</a>
-            <a href="#devlog">开发日志</a>
-            <a href="#about">关于我们</a>
-            <a href="#join">加入我们</a>
-        </div>
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fa fa-steam"></i></a>
-            <a href="#" target="_blank"><i class="fa fa-discord"></i></a>
-            <a href="#" target="_blank"><i class="fa fa-qq"></i></a>
-        </div>
-    </nav>
-
-    <!-- 英雄区 -->
-    <section class="hero" id="home">
-        <h1>QLY Games | 轻乐游工作室</h1>
-        <p>专注于创造充满情感与惊喜的独立游戏体验<br>用代码编织幻想世界，用交互传递纯粹快乐</p>
-        <a href="#games" class="btn">查看我们的游戏</a>
-        <a href="#join" class="btn btn-secondary">加入社区</a>
-    </section>
-
-    <!-- 网站更新提示 -->
-    <div class="update-notice">
-        🚧 网站正在持续更新中，更多游戏内容与开发进展即将上线，敬请期待！
+  <!-- 导航 -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="#" class="nav-logo">QLY GAMES</a>
+      <ul class="nav-links">
+        <li><a href="#games" data-hover="我们的游戏">我们的游戏</a></li>
+        <li><a href="#log" data-hover="开发日志">开发日志</a></li>
+        <li><a href="#about" data-hover="关于我们">关于我们</a></li>
+        <li><a href="#join" data-hover="加入我们">加入我们</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- 游戏展示 -->
-    <section class="section" id="games">
-        <h2>我们的游戏</h2>
-        <div class="game-grid">
-            <div class="game-card">
-                <h3>未知幻想</h3>
-                <p>类型：叙事解谜 / 2D 独立游戏<br>状态：开发中<br>在梦境与现实之间，编织属于你的世界。</p>
-            </div>
-            <div class="game-card">
-                <h3>代码行者</h3>
-                <p>类型：程序冒险 / 逻辑闯关<br>状态：规划中<br>用代码解决谜题，探索数字世界。</p>
-            </div>
-            <div class="game-card">
-                <h3>轻乐小游戏合集</h3>
-                <p>类型：休闲治愈<br>状态：规划中<br>轻松、有趣、随时可玩的快乐体验。</p>
-            </div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">独立游戏工作室 · 轻乐游</p>
+      <h1 class="hero-title">
+        用代码编织<span>幻想世界</span><br>
+        用交互传递<span>纯粹快乐</span>
+      </h1>
+      <p class="hero-desc">
+        专注于创造充满情感与惊喜的独立游戏体验。网站正在持续更新中，更多游戏内容与开发进展即将上线。
+      </p>
+      <a href="#games" class="hero-cta">查看我们的游戏</a>
+    </div>
+  </section>
+
+  <!-- 游戏展示 -->
+  <section class="section" id="games">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Our Games</p>
+        <h2 class="section-title">我们的<span>游戏</span></h2>
+      </div>
+      <div class="games-grid">
+        <article class="game-card">
+          <span class="game-card-status dev">开发中</span>
+          <h3 class="game-card-title">未知幻想</h3>
+          <p class="game-card-type">叙事解谜 / 2D 独立游戏</p>
+          <p class="game-card-desc">在梦境与现实之间，编织属于你的世界。</p>
+        </article>
+        <article class="game-card">
+          <span class="game-card-status planning">规划中</span>
+          <h3 class="game-card-title">代码行者</h3>
+          <p class="game-card-type">程序冒险 / 逻辑闯关</p>
+          <p class="game-card-desc">用代码解决谜题，探索数字世界。</p>
+        </article>
+        <article class="game-card">
+          <span class="game-card-status planning">规划中</span>
+          <h3 class="game-card-title">轻乐小游戏合集</h3>
+          <p class="game-card-type">休闲治愈</p>
+          <p class="game-card-desc">轻松、有趣、随时可玩的快乐体验。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 开发日志 -->
+  <section class="section" id="log" style="background: #f8f7fc;">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Dev Log</p>
+        <h2 class="section-title">开发<span>日志</span></h2>
+      </div>
+      <ul class="log-list">
+        <li class="log-item">
+          <span class="log-date">2026.09.20</span>
+          <div>
+            <p class="log-title">核心玩法框架搭建完成</p>
+            <p class="log-desc">完成了主线关卡的基础逻辑，正在打磨交互手感与关卡节奏。</p>
+          </div>
+        </li>
+        <li class="log-item">
+          <span class="log-date">2026.09.12</span>
+          <div>
+            <p class="log-title">美术风格方向确定</p>
+            <p class="log-desc">确定了整体视觉风格与配色方案，开始制作首批场景与角色资源。</p>
+          </div>
+        </li>
+        <li class="log-item">
+          <span class="log-date">2026.09.05</span>
+          <div>
+            <p class="log-title">开发工具链优化</p>
+            <p class="log-desc">重构了资源导入流程，提升了开发效率，为后续内容迭代做准备。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 关于我们 -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">About Us</p>
+          <h2 class="section-title">关于 <span>QLY Games</span></h2>
+          <p style="margin-top: 24px;">
+            我们是一群热爱游戏、热爱创造的独立开发者。QLY Games 轻乐游工作室，致力于制作有趣、有温度、有创意的独立游戏。
+          </p>
+          <p>用技术实现梦想，用游戏传递快乐。</p>
         </div>
-    </section>
-
-    <!-- 开发日志 -->
-    <section class="section" id="devlog">
-        <h2>开发日志</h2>
-        <div class="devlog-list">
-            <div class="devlog-item">
-                <h4>核心玩法框架搭建完成</h4>
-                <div class="date">2026.09.20</div>
-                <p>完成了主线关卡的基础逻辑，正在打磨交互手感与关卡节奏。</p>
-            </div>
-            <div class="devlog-item">
-                <h4>美术风格方向确定</h4>
-                <div class="date">2026.09.12</div>
-                <p>确定了整体视觉风格与配色方案，开始制作首批场景与角色资源。</p>
-            </div>
-            <div class="devlog-item">
-                <h4>开发工具链优化</h4>
-                <div class="date">2026.09.05</div>
-                <p>重构了资源导入流程，提升了开发效率，为后续内容迭代做准备。</p>
-            </div>
+        <div class="about-stats">
+          <div>
+            <p class="stat-number">3</p>
+            <p class="stat-label">在研项目</p>
+          </div>
+          <div>
+            <p class="stat-number">4+</p>
+            <p class="stat-label">开放岗位</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- 关于我们 -->
-    <section class="section" id="about">
-        <h2>关于 QLY Games</h2>
-        <div style="max-width:600px;margin:0 auto;text-align:center;color:#aaa;font-size:13px;">
-            <p>我们是一群热爱游戏、热爱创造的独立开发者。</p>
-            <br>
-            <p>QLY Games 轻乐游工作室，致力于制作有趣、有温度、有创意的独立游戏。</p>
-            <br>
-            <p>用技术实现梦想，用游戏传递快乐。</p>
+  <!-- 加入我们 -->
+  <section class="section" id="join" style="background: #f8f7fc;">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Join Us</p>
+        <h2 class="section-title">加入<span>我们</span></h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px;">玩家社区</h3>
+          <p style="color: var(--color-text-light);">参与测试、提出建议，和我们一起打磨游戏。</p>
+          <div class="join-actions">
+            <a href="#" class="btn-outline">加入 QQ 群</a>
+          </div>
         </div>
-    </section>
-
-    <!-- 加入我们 -->
-    <section class="section" id="join">
-        <h2>加入我们</h2>
-        <div class="join-us">
-            <div class="join-card">
-                <h3>玩家社区</h3>
-                <p>参与测试、提出建议，和我们一起打磨游戏。</p>
-                <a href="#" class="btn">加入 QQ 群</a>
-            </div>
-            <div class="join-card">
-                <h3>招贤纳士</h3>
-                <p>开放岗位：Unity 程序 / 2D 美术 / 游戏策划 / 音效设计</p>
-                <a href="mailto:your-email@example.com" class="btn">投递简历</a>
-            </div>
+        <div>
+          <h3 style="font-family: var(--font-display); font-size: 24px; margin-bottom: 12px;">招贤纳士</h3>
+          <p style="color: var(--color-text-light);">开放岗位：Unity 程序 / 2D 美术 / 游戏策划 / 音效设计</p>
+          <div class="join-actions">
+            <a href="mailto:your-email@example.com" class="btn-outline">投递简历</a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- 页脚 -->
-    <footer>
-        <p>© 2026 QLY Games 轻乐游工作室 | 保留所有权利</p>
-        <br>
-        <p>官方网站：qlygames.com</p>
-    </footer>
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">2026 © QLY Games · 轻乐游工作室</p>
+      <ul class="footer-links">
+        <li>
+          <a href="https://qlygames.com/privacy-policy.html"
+             target="_blank"
+             rel="noopener noreferrer privacy-policy">
+            隐私政策
+          </a>
+        </li>
+        <li>
+          <a href="https://qlygames.com/terms-and-conditions.html"
+             target="_blank"
+             rel="noopener noreferrer terms-of-service">
+            使用条款
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
 
-    <!-- 粒子初始化 -->
-    <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#00eeff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.4, "random": true },
-                "size": { "value": 2, "random": true },
-                "line_linked": { "enable": true, "distance": 120, "color": "#00eeff", "opacity": 0.15, "width": 1 },
-                "move": { "enable": true, "speed": 0.8, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 120, "line_linked": { "opacity": 0.4 } }, "push": { "particles_nb": 3 } }
-            },
-            "retina_detect": true
-        });
-    </script>
+  <script>
+    // 导航栏滚动吸顶
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // 开发日志入场动画
+    const logItems = document.querySelectorAll('.log-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    logItems.forEach((item) => observer.observe(item));
+  </script>
+
 </body>
 </html>
