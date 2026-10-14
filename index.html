@@ -7,15 +7,15 @@
   <style>
     /* ====== 设计令牌 ====== */
     :root {
-      --color-bg: #f7f5ff; /* 梦幻浅紫底 */
+      --color-bg: #f7f5ff;
       --color-text: #2c2a3d;
       --color-text-light: #6b6a75;
-      --color-accent: #7A3BD0;        /* 魔法紫 */
-      --color-accent-hover: #f9b401;  /* 金币黄 */
-      --color-brand-green: #52c41a;   /* 森林绿 */
-      --color-brand-blue: #1890ff;    /* 水晶蓝 */
+      --color-accent: #7A3BD0;
+      --color-accent-hover: #f9b401;
+      --color-brand-green: #52c41a;
+      --color-brand-blue: #1890ff;
       --color-border: rgba(122, 59, 208, 0.15);
-      --color-card-bg: rgba(255, 255, 255, 0.85); /* 半透明卡片 */
+      --color-card-bg: rgba(255, 255, 255, 0.85);
       --font-body: 'PTSans', 'Microsoft YaHei', 'PingFang SC', sans-serif;
       --font-display: 'LeagueSpartan', 'PTSans', 'Microsoft YaHei', sans-serif;
       --max-width: 1200px;
@@ -30,7 +30,6 @@
       font-size: 16px;
       line-height: 1.6;
       color: var(--color-text);
-      /* 模拟奇幻森林的渐变背景 */
       background: linear-gradient(135deg, #f0f4f8 0%, #e6e0f8 50%, #e0f4f4 100%);
       background-attachment: fixed;
       overflow-x: hidden;
@@ -41,36 +40,32 @@
     img { max-width: 100%; display: block; }
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 
-    /* ====== 漂浮元素动画与样式 ====== */
+    /* ====== 漂浮元素 ====== */
     .floating-elements {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; /* 不阻挡鼠标点击 */
+      pointer-events: none;
       overflow: hidden;
       z-index: 0;
     }
     .float-item {
       position: absolute;
-      font-size: 48px; /* Emoji 大小，换成图片后可调整 width */
-      opacity: 0.6;
+      font-size: 48px;
+      opacity: 0.5;
       animation: float 6s ease-in-out infinite;
-      /* 换成图片时使用这个样式：
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      */
     }
     @keyframes float {
       0% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-20px) rotate(5deg); }
       100% { transform: translateY(0px) rotate(0deg); }
     }
-    .float-item:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
-    .float-item:nth-child(2) { top: 25%; right: 15%; animation-delay: 1.5s; font-size: 56px; }
-    .float-item:nth-child(3) { top: 60%; left: 5%; animation-delay: 3s; font-size: 40px; }
-    .float-item:nth-child(4) { top: 70%; right: 8%; animation-delay: 4.5s; }
-    .float-item:nth-child(5) { top: 10%; left: 45%; animation-delay: 2s; font-size: 36px; }
-    .float-item:nth-child(6) { top: 80%; left: 40%; animation-delay: 5s; font-size: 52px; }
+    /* 重新分布漂浮元素，避开正中间的标题 */
+    .float-item:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; font-size: 56px; }
+    .float-item:nth-child(2) { top: 15%; right: 20%; animation-delay: 1.5s; font-size: 44px; }
+    .float-item:nth-child(3) { top: 60%; left: 8%; animation-delay: 3s; font-size: 40px; }
+    .float-item:nth-child(4) { top: 70%; right: 12%; animation-delay: 4.5s; }
+    .float-item:nth-child(5) { top: 40%; left: 5%; animation-delay: 2s; font-size: 36px; }
+    .float-item:nth-child(6) { top: 80%; left: 45%; animation-delay: 5s; font-size: 52px; }
 
     /* ====== 导航栏 ====== */
     .nav {
@@ -84,23 +79,19 @@
       padding: 10px 0;
       box-shadow: 0 4px 20px rgba(122, 59, 208, 0.1);
     }
-    .nav .container {
-      display: flex; justify-content: space-between; align-items: center;
-    }
+    .nav .container { display: flex; justify-content: space-between; align-items: center; }
     .nav-logo {
       font-family: var(--font-display);
       font-size: 20px; font-weight: 700;
       color: var(--color-accent);
       letter-spacing: 0.05em;
     }
-    .nav.scrolled .nav-logo { color: var(--color-accent); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
       position: relative;
       font-size: 15px; color: var(--color-text); font-weight: 600;
       overflow: hidden; display: block;
     }
-    .nav.scrolled .nav-links a { color: var(--color-text); }
     .nav-links a::before,
     .nav-links a::after {
       content: attr(data-hover);
@@ -111,14 +102,11 @@
       color: var(--color-accent);
       transform: translateY(-100%); opacity: 0;
     }
-    .nav-links a::after {
-      color: inherit;
-      transform: translateY(0); opacity: 1;
-    }
+    .nav-links a::after { color: inherit; transform: translateY(0); opacity: 1; }
     .nav-links a:hover::before { transform: translateY(0); opacity: 1; }
     .nav-links a:hover::after { transform: translateY(100%); opacity: 0; }
 
-    /* ====== Hero 区 ====== */
+    /* ====== Hero 区（重点优化） ====== */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -128,42 +116,42 @@
       z-index: 1;
     }
     .hero-content { max-width: 800px; position: relative; z-index: 2; }
+    
+    /* 标签去掉了背景块，更轻盈 */
     .hero-eyebrow {
       font-size: 14px; letter-spacing: 0.15em;
-      text-transform: uppercase;
       color: var(--color-accent);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       font-weight: 700;
-      background: rgba(122, 59, 208, 0.1);
-      display: inline-block;
-      padding: 6px 16px;
-      border-radius: 20px;
     }
+    
+    /* 核心修复：缩小字号，增加行高，放宽字间距 */
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(42px, 6vw, 80px);
-      line-height: 1.05;
+      font-size: clamp(32px, 4vw, 56px); /* 最大从80降到56 */
+      line-height: 1.3;                  /* 行高从1.05放宽到1.3，避免中文字挤在一起 */
+      letter-spacing: 0.02em;            /* 加一点字间距，让方块字有呼吸感 */
       color: var(--color-text);
       margin-bottom: 24px;
       text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
     }
     .hero-title span { color: var(--color-accent); }
+    
+    /* 副标题去掉了白色背景框，直接融入渐变底 */
     .hero-desc {
-      font-size: 18px; line-height: 1.7;
+      font-size: 17px; line-height: 1.8;
       color: var(--color-text-light);
-      max-width: 600px; margin: 0 auto 40px;
-      background: rgba(255, 255, 255, 0.6);
-      padding: 16px 24px;
-      border-radius: 12px;
-      backdrop-filter: blur(4px);
+      max-width: 520px;                  /* 限制宽度，让文字自然换行 */
+      margin: 0 auto 40px;
     }
+    
     .hero-cta {
       display: inline-block;
-      padding: 16px 40px;
+      padding: 14px 36px;
       background: var(--color-accent);
       color: #fff;
       font-weight: 700;
-      border-radius: 50px; /* 圆角按钮更像游戏 UI */
+      border-radius: 50px;
       box-shadow: 0 8px 20px rgba(122, 59, 208, 0.3);
       transition: all .3s ease;
     }
@@ -186,8 +174,8 @@
     }
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(32px, 4vw, 56px);
-      line-height: 1.1;
+      font-size: clamp(28px, 3vw, 42px); /* 区块标题也适当缩小，保持全站比例协调 */
+      line-height: 1.3;
       color: var(--color-text);
     }
     .section-title span { color: var(--color-accent); }
@@ -227,7 +215,7 @@
     .game-card-status.planning { background: rgba(24, 144, 255, 0.1); color: var(--color-brand-blue); }
     .game-card-title {
       font-family: var(--font-display);
-      font-size: 28px; margin-bottom: 8px; color: var(--color-text);
+      font-size: 24px; margin-bottom: 8px; color: var(--color-text);
     }
     .game-card-type {
       font-size: 14px; color: var(--color-text-light);
@@ -265,9 +253,7 @@
       align-items: center;
     }
     .about-text p { margin-bottom: 16px; color: var(--color-text-light); line-height: 1.8; }
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-    }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
     .stat-number {
       font-family: var(--font-display);
       font-size: 48px; color: var(--color-accent);
@@ -275,10 +261,7 @@
     }
     .stat-label { font-size: 14px; color: var(--color-text-light); margin-top: 8px; }
 
-    .join-actions {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      margin-top: 32px;
-    }
+    .join-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
     .btn-outline {
       display: inline-block;
       padding: 14px 32px;
@@ -316,7 +299,8 @@
     /* ====== 响应式 ====== */
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero-title { font-size: 36px; }
+      .hero-title { font-size: 28px; }
+      .hero-desc { font-size: 15px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .log-item { grid-template-columns: 1fr; gap: 8px; }
       .about-stats { gap: 24px; }
@@ -328,14 +312,14 @@
 </head>
 <body>
 
-  <!-- 漂浮元素（Emoji 占位，后续可换成图片） -->
+  <!-- 漂浮元素 -->
   <div class="floating-elements">
-    <div class="float-item">💎</div> <!-- 换成：顶栏IOCN-钻石.png -->
-    <div class="float-item">🍃</div> <!-- 换成：顶栏IOCN-精华.png -->
-    <div class="float-item">🔮</div> <!-- 换成：顶栏IOCN-水晶矿.png -->
-    <div class="float-item">🍎</div> <!-- 换成：顶栏IOCN-果子.png -->
-    <div class="float-item">📜</div> <!-- 换成：任务ICON.png -->
-    <div class="float-item">🪙</div> <!-- 换成：顶栏IOCN-秘银矿.png -->
+    <div class="float-item">💎</div> <!-- 顶栏IOCN-钻石.png -->
+    <div class="float-item">🍃</div> <!-- 顶栏IOCN-精华.png -->
+    <div class="float-item">🔮</div> <!-- 顶栏IOCN-水晶矿.png -->
+    <div class="float-item">🍎</div> <!-- 顶栏IOCN-果子.png -->
+    <div class="float-item">📜</div> <!-- 任务ICON.png -->
+    <div class="float-item">🪙</div> <!-- 顶栏IOCN-秘银矿.png -->
   </div>
 
   <!-- 导航 -->
@@ -505,13 +489,11 @@
   </footer>
 
   <script>
-    // 导航栏滚动吸顶
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // 开发日志入场动画
     const logItems = document.querySelectorAll('.log-item');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
