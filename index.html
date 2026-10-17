@@ -59,7 +59,6 @@
       50% { transform: translateY(-20px) rotate(5deg); }
       100% { transform: translateY(0px) rotate(0deg); }
     }
-    /* 重新分布漂浮元素，避开正中间的标题 */
     .float-item:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; font-size: 56px; }
     .float-item:nth-child(2) { top: 15%; right: 20%; animation-delay: 1.5s; font-size: 44px; }
     .float-item:nth-child(3) { top: 60%; left: 8%; animation-delay: 3s; font-size: 40px; }
@@ -106,7 +105,7 @@
     .nav-links a:hover::before { transform: translateY(0); opacity: 1; }
     .nav-links a:hover::after { transform: translateY(100%); opacity: 0; }
 
-    /* ====== Hero 区（重点优化） ====== */
+    /* ====== Hero 区 ====== */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -117,7 +116,6 @@
     }
     .hero-content { max-width: 800px; position: relative; z-index: 2; }
 
-    /* ====== 公司名称（显著位置） ====== */
     .hero-company { margin-bottom: 26px; }
     .hero-company-cn {
       font-family: var(--font-display);
@@ -145,7 +143,6 @@
       background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
     }
 
-    /* 标签去掉了背景块，更轻盈 */
     .hero-eyebrow {
       font-size: 14px; letter-spacing: 0.15em;
       color: var(--color-accent);
@@ -153,7 +150,6 @@
       font-weight: 700;
     }
 
-    /* 核心修复：缩小字号，增加行高，放宽字间距 */
     .hero-title {
       font-family: var(--font-display);
       font-size: clamp(32px, 4vw, 56px);
@@ -165,7 +161,6 @@
     }
     .hero-title span { color: var(--color-accent); }
 
-    /* 副标题去掉了白色背景框，直接融入渐变底 */
     .hero-desc {
       font-size: 17px; line-height: 1.8;
       color: var(--color-text-light);
@@ -319,14 +314,14 @@
       display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 24px;
     }
-    .footer-brand { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 8px; /* 控制两行之间的间距 */
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .footer-copy { 
-      font-size: 14px; 
-      color: var(--color-text); 
+    .footer-copy {
+      font-size: 14px;
+      color: var(--color-text);
       font-weight: 500;
     }
     .footer-company-en {
@@ -334,7 +329,6 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       color: var(--color-text-light);
-      text-transform: uppercase;
     }
     .footer-company-info {
       font-size: 12px;
@@ -393,7 +387,6 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <!-- 公司名称（显著位置） -->
       <div class="hero-company">
         <p class="hero-company-cn">武汉轻乐游科技有限公司</p>
         <p class="hero-company-en">Wuhan Qingleyou Technology Co., Ltd.</p>
