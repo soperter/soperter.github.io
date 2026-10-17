@@ -336,6 +336,13 @@
       color: var(--color-text-light);
       text-transform: uppercase;
     }
+    .footer-company-info {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--color-text-light);
+      letter-spacing: 0.02em;
+      max-width: 820px;
+    }
     .footer-links { display: flex; gap: 24px; list-style: none; }
     .footer-links a { font-size: 14px; color: var(--color-text-light); font-weight: 600; }
     .footer-links a:hover { color: var(--color-accent); }
@@ -353,6 +360,7 @@
       .stat-number { font-size: 36px; }
       .footer-inner { flex-direction: column; text-align: center; }
       .footer-brand { align-items: center; }
+      .footer-company-info { max-width: 100%; }
       .float-item { font-size: 32px !important; }
     }
   </style>
@@ -521,11 +529,26 @@
   <!-- 页脚 -->
   <footer class="footer">
     <div class="container footer-inner">
-      <!-- 调整了这里的排版结构 -->
       <div class="footer-brand">
         <p class="footer-copy">2026 © 武汉轻乐游科技有限公司 · QLY Games 轻乐游工作室</p>
-        <p class="footer-company-en">Official Company Name: WUHAN HAPPYGAMES TECHNOLOGY CO.LTD</p>
+
+        <p class="footer-company-en">
+          Official Company Name: WUHAN HAPPYGAMES TECHNOLOGY CO.LTD
+        </p>
+
+        <p class="footer-company-info">
+          Address: Room 302, Building 1, South Zone, Yunhu Star, Zhongye Southern, Guandong Subdistrict, East Lake High-Tech Development Zone, Wuhan City, Hubei Province, P.R.China
+        </p>
+
+        <p class="footer-company-info">
+          Postal Code: 430000
+        </p>
+
+        <p class="footer-company-info">
+          Tel: +8618627872019
+        </p>
       </div>
+
       <ul class="footer-links">
         <li>
           <a href="https://qlygames.com/privacy-policy.html"
