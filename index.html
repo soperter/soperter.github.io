@@ -319,7 +319,20 @@
       display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 24px;
     }
-    .footer-copy { font-size: 14px; color: var(--color-text-light); }
+    .footer-brand { display: flex; flex-direction: column; gap: 4px; }
+    .footer-company-cn {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--color-text);
+      letter-spacing: 0.02em;
+    }
+    .footer-company-en {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--color-text-light);
+    }
+    .footer-copy { font-size: 13px; color: var(--color-text-light); margin-top: 4px; }
     .footer-links { display: flex; gap: 24px; list-style: none; }
     .footer-links a { font-size: 14px; color: var(--color-text-light); font-weight: 600; }
     .footer-links a:hover { color: var(--color-accent); }
@@ -336,6 +349,7 @@
       .about-stats { gap: 24px; }
       .stat-number { font-size: 36px; }
       .footer-inner { flex-direction: column; text-align: center; }
+      .footer-brand { align-items: center; }
       .float-item { font-size: 32px !important; }
     }
   </style>
@@ -505,7 +519,11 @@
   <!-- 页脚 -->
   <footer class="footer">
     <div class="container footer-inner">
-      <p class="footer-copy">2026 © 武汉轻乐游科技有限公司 · QLY Games 轻乐游工作室</p>
+      <div class="footer-brand">
+        <p class="footer-company-cn">武汉轻乐游科技有限公司</p>
+        <p class="footer-company-en">WUHAN HAPPYGAMES TECHNOLOGY CO.LTD</p>
+        <p class="footer-copy">2026 © QLY Games · 轻乐游工作室</p>
+      </div>
       <ul class="footer-links">
         <li>
           <a href="https://qlygames.com/privacy-policy.html"
