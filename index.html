@@ -116,7 +116,35 @@
       z-index: 1;
     }
     .hero-content { max-width: 800px; position: relative; z-index: 2; }
-    
+
+    /* ====== 公司名称（显著位置） ====== */
+    .hero-company { margin-bottom: 26px; }
+    .hero-company-cn {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: 0.14em;
+      color: var(--color-text);
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
+    }
+    .hero-company-en {
+      margin-top: 10px;
+      font-family: var(--font-display);
+      font-size: clamp(10px, 1.1vw, 13px);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+    }
+    .hero-company::after {
+      content: '';
+      display: block;
+      width: 56px; height: 3px;
+      margin: 18px auto 0;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+    }
+
     /* 标签去掉了背景块，更轻盈 */
     .hero-eyebrow {
       font-size: 14px; letter-spacing: 0.15em;
@@ -124,7 +152,7 @@
       margin-bottom: 20px;
       font-weight: 700;
     }
-    
+
     /* 核心修复：缩小字号，增加行高，放宽字间距 */
     .hero-title {
       font-family: var(--font-display);
@@ -136,7 +164,7 @@
       text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
     }
     .hero-title span { color: var(--color-accent); }
-    
+
     /* 副标题去掉了白色背景框，直接融入渐变底 */
     .hero-desc {
       font-size: 17px; line-height: 1.8;
@@ -144,7 +172,7 @@
       max-width: 520px;                  /* 限制宽度，让文字自然换行 */
       margin: 0 auto 40px;
     }
-    
+
     .hero-cta {
       display: inline-block;
       padding: 14px 36px;
@@ -301,6 +329,8 @@
       .nav-links { display: none; }
       .hero-title { font-size: 28px; }
       .hero-desc { font-size: 15px; }
+      .hero-company-cn { letter-spacing: 0.06em; }
+      .hero-company-en { letter-spacing: 0.12em; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .log-item { grid-template-columns: 1fr; gap: 8px; }
       .about-stats { gap: 24px; }
@@ -338,6 +368,13 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
+
+      <!-- 公司名称（显著位置） -->
+      <div class="hero-company">
+        <p class="hero-company-cn">武汉轻乐游科技有限公司</p>
+        <p class="hero-company-en">WUHAN HAPPYGAMES TECHNOLOGY CO.LTD</p>
+      </div>
+
       <p class="hero-eyebrow">独立游戏工作室 · 轻乐游</p>
       <h1 class="hero-title">
         用代码编织<span>幻想世界</span><br>
@@ -468,7 +505,7 @@
   <!-- 页脚 -->
   <footer class="footer">
     <div class="container footer-inner">
-      <p class="footer-copy">2026 © QLY Games · 轻乐游工作室</p>
+      <p class="footer-copy">2026 © 武汉轻乐游科技有限公司 · QLY Games 轻乐游工作室</p>
       <ul class="footer-links">
         <li>
           <a href="https://qlygames.com/privacy-policy.html"
